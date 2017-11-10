@@ -2,6 +2,12 @@ class User < ApplicationRecord
   has_secure_password
   attr_accessor :auth_token
 
+  # MAILERS
+  def send_welcome_email
+    UserMailer.welcome(self).deliver!
+  end
+
+  # SESSIONS
   def generate_token
     begin
       self[:auth_token] = SecureRandom.urlsafe_base64
