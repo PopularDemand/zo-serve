@@ -17,7 +17,6 @@ gem 'redis', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'responders', '~> 2.4.0'
 gem 'rack-cors'
-# gem 'uglifier' # remove this on redo to api only
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

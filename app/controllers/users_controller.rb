@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(strong_user_params)
     if @user.save
-      User.send_welcome_email(@user.id)
+      @user.send_welcome_email
       sign_in(@user)
       render json: { user: @user, current_user: current_user }
     else
