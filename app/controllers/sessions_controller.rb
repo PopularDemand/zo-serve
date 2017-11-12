@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to users_path # TODO send to home page
+    redirect_to root_path
   end
 
   private
