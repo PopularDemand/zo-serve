@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  actual_icon_id: 1
+  selected_icon_id: 1
+  count: 1
+
+two:
+  actual_icon_id: 1
+  selected_icon_id: 1
+  count: 1

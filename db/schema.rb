@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029202451) do
+ActiveRecord::Schema.define(version: 20180211042727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "receiver_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "games_selections", force: :cascade do |t|
+    t.integer  "selection_id", null: false
+    t.integer  "game_id",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["selection_id", "game_id"], name: "index_games_selections_on_selection_id_and_game_id", using: :btree
+  end
+
+  create_table "icons", force: :cascade do |t|
+    t.string   "color"
+    t.string   "shape"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "selections", force: :cascade do |t|
+    t.integer  "actual_icon_id",               null: false
+    t.integer  "selected_icon_id",             null: false
+    t.integer  "count",            default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "password_digest", null: false

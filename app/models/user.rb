@@ -2,6 +2,13 @@ class User < ApplicationRecord
   has_secure_password
   attr_accessor :auth_token
 
+  # ASSOCIATIONS
+  has_many :receiver_games,
+           class_name: 'Game',
+           foreign_key: :receiver_id
+  has_many :selections,
+           through: :receiver_games
+
   # MAILERS
   def send_welcome_email
     UserMailer.welcome(self).deliver!
