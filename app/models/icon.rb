@@ -7,4 +7,8 @@ class Icon < ApplicationRecord
   has_many :user_selections,
            class_name: 'Selection',
            foreign_key: :selected_icon_id
+
+  def self.random_set(count = 4)
+    limit(count).order("RANDOM()")
+  end
 end

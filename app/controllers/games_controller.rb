@@ -12,6 +12,6 @@ class GamesController < ApplicationController
   private
 
     def game_params
-      params.require(:quote).permit(:receiver_id)
+      params.require(:game).permit(:receiver_id)
     end
 end

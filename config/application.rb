@@ -8,9 +8,7 @@ Bundler.require(*Rails.groups)
 
 module ZoServe
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    config.action_cable.mount_path = '/cable'
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
@@ -18,5 +16,7 @@ module ZoServe
         resource '*', :headers => :any, :methods => :any
       end
     end
+
+    config.action_cable.allowed_request_origins = [/localhost:8000/]
   end
 end
