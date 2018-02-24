@@ -1,33 +1,35 @@
 class Game < ApplicationRecord
+  NUM_SELECTIONS = 5
 
-  # Associtations
+  # Associations
   has_many :selections
   belongs_to :receiver, class_name: 'User'
 
-  def initializeRound
-    if (selections.count >= 5)
-      end_game
-      return
-    end
-
-    # populate all icons
+  def initialize_round
     icons = Icon.random_set()
-
-    # selecton one icon
     actual_icon = icons.sample
-
-    # create new selection
-    selection = selections.create(actual_icon: actual_icon)
-
-    # send sender actual
-    params = { round: selections.count, actual_icon: actual_icon, icons: icons }
+    selection = selections.create!(actual_icon: actual_icon)
+    params = { round: selections.count, actual_icon: actual_icon, icons: icons, type: 'INITIALIZE_ROUND' }
     ActionCable.server.broadcast("game_receiver_#{id}", params)
-    # send receiver group containing actual
   end
 
-  def end_game
-    params = { type: 'GAME_COMPLETE', game: self, selections: selections }
+  def record_selected_icon(id)
+    selections.last.update!(selected_icon_id: id)
+  end
+
+  def over?
+    selections_filled
+  end
+
+  def end
+    params = { type: 'GAME_OVER', game: self, selections: selections }
     ActionCable.server.broadcast("game_receiver_#{id}", params)
     ActionCable.server.broadcast("game_sender_#{id}", params)
   end
+
+  private
+
+    def selections_filled
+      selections.count >= Game::NUM_SELECTIONS
+    end
 end

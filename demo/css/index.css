@@ -1,0 +1,24 @@
+.sender, .receiver {
+  display: inline-block;
+  box-sizing: border-box;
+  width: calc(50% - 32px);
+  border: 1px solid #CCC;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.sender {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.receiver {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.selection-icon {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+}

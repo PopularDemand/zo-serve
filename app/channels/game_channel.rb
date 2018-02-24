@@ -1,4 +1,5 @@
 class GameChannel < ApplicationCable::Channel
+
   def subscribed
     if (params[:is_receiver])
       stream_from "game_receiver_#{params[:game_id]}"
@@ -11,17 +12,20 @@ class GameChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def initialize_round
-    game = Game.find(params[:game_id])
-    if (game)
-      game.initializeRound
-    else
-      debugger
-    end
-  end
-
   # Partner function to client#send
   def receive(data)
     puts data
   end
+
+  def initialize_round
+    game = Game.find(params[:game_id])
+    game.initialize_round
+  end
+
+  def make_selection(data)
+    game = Game.find(params[:game_id])
+    game.record_selected_icon(data['id'])
+    game.over? ? game.end : game.initialize_round
+  end
+
 end

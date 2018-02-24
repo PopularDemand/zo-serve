@@ -3,21 +3,50 @@
   <head>
     <meta charset="utf-8">
     <title>Zo-Serve Demo</title>
-    <link rel="icon" 
-      type="image/png" 
-      href="public/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="icon" type="image/png" href="public/favicon.ico">
   </head>
 
   <body>
-    <h1>Hello World</h1>
-    <div class="content">
-      
+    <div class="tools">
+      <h1>Tools</h1>
+      <div class="content"></div>      
     </div>
+
+    <div class="sender">
+      <h2>Sender</h2>
+      <div class="sender-board"></div>
+      <div class="sender-tools"></div>
+    </div>
+
+    <div class="receiver">
+      <h2>Receiver</h2>
+      <div class="receiver-board"></div>
+      <div class="reveiver-tools"></div>
+    </div>
+    <div class="results">
+      <h2>Results</h2>
+      <table class='results-table'>
+        <thead>
+          <tr>
+            <th>Actual</th>
+            <th>Selected</th>
+            <th>Correct?</th>
+          </tr>
+        </thead>
+        <tbody class='results-body'>
+          <!-- selections get appended here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script src="vendor/action-cable.js"></script>
     <script src="vendor/fetch.js"></script>
+    <script src="js/SVGs.js"></script>
     <script src="js/views.js"></script>
-    <script src="index.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

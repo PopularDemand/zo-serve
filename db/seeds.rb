@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+puts 'destroying all icons'
+Icon.destroy_all
+
+colors = ['red', 'blue', 'yellow', 'orange']
+shapes = ['AidKit', 'Bug', 'Earth', 'Fire']
+
+puts 'creating icons'
+colors.each do |color|
+  shapes.each do |shape|
+    Icon.create(color: color, shape: shape)
+  end
+end
