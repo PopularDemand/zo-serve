@@ -12,11 +12,11 @@ module ZoServe
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:8000', 'localhost'
+        origins ENV['ALLOWED_ORIGINS'].split(', ')
         resource '*', :headers => :any, :methods => :any
       end
     end
 
-    config.action_cable.allowed_request_origins = [/localhost:8000/]
+    config.action_cable.allowed_request_origins = ENV['ALLOWED_ORIGINS'].split(', ')
   end
 end
